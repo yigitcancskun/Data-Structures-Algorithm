@@ -62,7 +62,45 @@ class DoublyLinkedList:
             self.head = new_node
             self.length += 1
         return True
+    
+    def pop_first(self):
+        if self.head is None:
+            return None
+        elif self.length == 1:
+            self.head = None
+            self.tail = None
+            self.length -= 1
+        else:
+            temp = self.head
+            self.head = self.head.next
+            temp.next = None
+            self.head.prev = None
+            self.length -=1
+        return None
         
+    # def get(self, index):
+    #     if index < 0 or index > self.length:
+    #         return None
+    #     temp = self.head
+    #     for _ in range(index):
+    #         temp = temp.next
+    #     return temp
+    # this method for single linked list
+
+    def get(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        if index < self.length/2:
+            for _ in range(index):
+                temp = temp.next
+        else:
+            temp = self.tail
+            for _ in range(self.length -1, index, -1):
+                temp = temp.prev
+        return temp.value
+    
+
 
 
 
@@ -70,8 +108,10 @@ class DoublyLinkedList:
 
 
 my_dll = DoublyLinkedList(7)
-my_dll.append(435)
-my_dll.append(435)
+my_dll.append(3)
+my_dll.append(5)
+my_dll.append(4)
 my_dll.prepend(35)
+my_dll.pop_first()
 my_dll.pop()
-my_dll.print_list()
+print(my_dll.get(2))
