@@ -1,4 +1,8 @@
-class Node():
+class Node:
+    def __init__(self, value): # creating a nod
+        self.value = value
+        self.next = None
+class Queue():
     def __init__(self,value):
         new_node = Node(value)
         self.first = new_node
